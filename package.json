@@ -1,0 +1,44 @@
+{
+  "name": "svg2vector-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for converting SVG to Android Vector Drawable XML format",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "svg2vector-mcp": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "svgParser.js",
+    "svgTree.js",
+    "pathBuilder.js",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js",
+    "prepublishOnly": "node test.js"
+  },
+  "keywords": [
+    "mcp",
+    "svg",
+    "vector-drawable",
+    "android",
+    "converter",
+    "model-context-protocol"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/svg2vector-mcp.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.6.0",
+    "@xmldom/xmldom": "^0.8.10"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
