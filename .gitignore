@@ -4,3 +4,4 @@ node_modules/
 .env
 dist/
 test_output.xml
+test-data/

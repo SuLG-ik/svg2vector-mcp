@@ -140,4 +140,30 @@ describe('Integration Tests', () => {
       assert.ok(result.xml.includes('#D1D1D6'));
     });
   });
+
+  describe('Exact output matching', () => {
+    it('should match expected XML output for all test files', async () => {
+      const testCases = await getTestCases();
+      
+      for (const testCase of testCases) {
+        // Check if expected XML file exists
+        try {
+          await fs.access(testCase.xmlPath);
+        } catch {
+          // Skip if no expected XML file
+          continue;
+        }
+
+        const svgContent = await fs.readFile(testCase.svgPath, 'utf-8');
+        const expectedXml = await fs.readFile(testCase.xmlPath, 'utf-8');
+        const result = converter.convert(svgContent);
+        
+        assert.strictEqual(
+          result.xml.trim(), 
+          expectedXml.trim(), 
+          `Generated XML doesn't match expected output for ${testCase.name}`
+        );
+      }
+    });
+  });
 });
