@@ -55,7 +55,7 @@ Or if installed from source:
   "mcpServers": {
     "svg2vector": {
       "command": "node",
-      "args": ["/path/to/svg2vector-mcp/index.js"]
+      "args": ["/path/to/svg2vector-mcp/src/index.js"]
     }
   }
 }
@@ -139,12 +139,33 @@ The tool generates Android Vector Drawable XML files compatible with Android API
 
 ```
 svg2vector-mcp/
-├── index.js          # MCP server entry point
-├── svgParser.js      # SVG parsing logic
-├── svgTree.js        # SVG tree data structures
-├── pathBuilder.js    # Path construction utilities
-├── package.json      # Package configuration
-└── README.md         # This file
+├── src/
+│   ├── index.js              # MCP server entry point
+│   ├── constants.js          # Shared constants and mappings
+│   ├── converter/
+│   │   ├── index.js          # Converter module exports
+│   │   ├── SvgConverter.js   # Main converter class
+│   │   └── XmlWriter.js      # XML output writer
+│   ├── parser/
+│   │   ├── index.js          # Parser module exports
+│   │   └── SvgParser.js      # SVG parsing logic
+│   ├── tree/
+│   │   ├── index.js          # Tree module exports
+│   │   ├── SvgNode.js        # SVG node classes
+│   │   └── SvgTree.js        # SVG tree container
+│   └── utils/
+│       ├── index.js          # Utils module exports
+│       ├── ColorUtils.js     # Color conversion utilities
+│       └── PathBuilder.js    # Path construction builder
+├── test/
+│   ├── ColorUtils.test.js    # Color utilities tests
+│   ├── PathBuilder.test.js   # Path builder tests
+│   ├── SvgParser.test.js     # Parser tests
+│   ├── SvgConverter.test.js  # Converter tests
+│   └── integration.test.js   # Integration tests
+├── test-data/                # Test SVG/XML files
+├── package.json
+└── README.md
 ```
 
 ### Running Locally
@@ -154,18 +175,35 @@ svg2vector-mcp/
 npm install
 
 # Run the server
-node index.js
+npm start
+
+# Or directly
+node src/index.js
 ```
 
 ### Testing
 
-Test with a simple SVG file:
-
 ```bash
-# Create a test SVG
-echo '<svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#FF0000"/></svg>' > test.svg
+# Run all tests
+npm test
 
-# Use the MCP server through your client to convert it
+# Run tests in watch mode
+npm run test:watch
+```
+
+### Using the Converter Programmatically
+
+```javascript
+import { SvgConverter } from 'svg2vector-mcp/converter';
+
+const converter = new SvgConverter();
+const result = converter.convert(svgContent);
+
+if (result.success) {
+  console.log(result.xml);
+} else {
+  console.error(result.errors);
+}
 ```
 
 ## Publishing to npm

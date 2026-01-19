@@ -3,21 +3,26 @@
   "version": "1.0.0",
   "description": "MCP server for converting SVG to Android Vector Drawable XML format",
   "type": "module",
-  "main": "index.js",
+  "main": "src/index.js",
   "bin": {
-    "svg2vector-mcp": "./index.js"
+    "svg2vector-mcp": "./src/index.js"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./converter": "./src/converter/index.js",
+    "./parser": "./src/parser/index.js",
+    "./tree": "./src/tree/index.js",
+    "./utils": "./src/utils/index.js"
   },
   "files": [
-    "index.js",
-    "svgParser.js",
-    "svgTree.js",
-    "pathBuilder.js",
+    "src",
     "README.md"
   ],
   "scripts": {
-    "start": "node index.js",
-    "test": "node test.js",
-    "prepublishOnly": "node test.js"
+    "start": "node src/index.js",
+    "test": "node --test test/*.test.js",
+    "test:watch": "node --test --watch test/*.test.js",
+    "prepublishOnly": "npm test"
   },
   "keywords": [
     "mcp",
@@ -35,8 +40,8 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",
-    "axios": "^1.6.0",
-    "@xmldom/xmldom": "^0.8.10"
+    "@xmldom/xmldom": "^0.8.10",
+    "axios": "^1.6.0"
   },
   "engines": {
     "node": ">=18.0.0"
