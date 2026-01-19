@@ -36,7 +36,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/svg2vector-mcp.git"
+    "url": "git+https://github.com/SuLG-ik/svg2vector-mcp.git"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",
