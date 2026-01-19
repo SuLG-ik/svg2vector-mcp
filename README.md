@@ -10,6 +10,7 @@ MCP (Model Context Protocol) server for converting SVG files to Android Vector D
 - ✅ Converts shapes to path elements
 - ✅ Preserves stroke and fill properties
 - ✅ Handles CSS styles and presentation attributes
+- ✅ Works seamlessly with SVGs exported from [Figma MCP](https://developers.figma.com/docs/figma-mcp-server/)
 
 ## Installation
 
@@ -85,7 +86,24 @@ Converts an SVG file to Android Vector Drawable XML format.
   "svgPath": "https://example.com/icon.svg",
   "outputPath": "./output/icon.xml"
 }
+
+// Convert SVG exported from Figma MCP
+{
+  "svgPath": "/path/to/figma-export.svg",
+  "outputPath": "./android/res/drawable/ic_figma_icon.xml"
+}
 ```
+
+## Integration with Figma MCP
+
+This MCP server works seamlessly with the [official Figma MCP server](https://developers.figma.com/docs/figma-mcp-server/). You can use Figma MCP to export SVG assets from Figma designs, and then use this server to convert them to Android Vector Drawables.
+
+**Workflow example:**
+1. Use Figma MCP to export SVG from your Figma design
+2. Use svg2vector-mcp to convert the exported SVG to Android Vector Drawable XML
+3. Use the generated XML in your Android project
+
+This makes it easy to maintain design consistency between Figma and Android applications.
 
 ## Supported SVG Elements
 
@@ -205,12 +223,6 @@ if (result.success) {
   console.error(result.errors);
 }
 ```
-
-## Publishing to npm
-
-1. Update version in `package.json`
-2. Login to npm: `npm login`
-3. Publish: `npm publish`
 
 ## Troubleshooting
 
