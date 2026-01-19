@@ -19,7 +19,7 @@ export class Svg2VectorServer {
     this.server = new Server(
       {
         name: 'svg2vector-mcp',
-        version: '1.0.0',
+        version: '1.1.0',
       },
       {
         capabilities: {
