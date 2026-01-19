@@ -7,8 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.0] - 2026-01-19
 
+### Changed
+- **Major refactoring**: Restructured project to use `src/` directory with modular architecture
+- Reorganized codebase into logical modules: `converter/`, `parser/`, `tree/`, `utils/`
+- Migrated from flat structure to proper module exports
+
 ### Added
-- Minor improvements and bug fixes
+- Comprehensive test suite with unit and integration tests
+- Proper module exports in `package.json`
+
+### Removed
+- Deprecated root-level files and obsolete documentation
 
 ## [1.0.0] - 2025-12-04
 
